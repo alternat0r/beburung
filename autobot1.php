@@ -9,6 +9,7 @@
 	require_once('twitteroauth-master/twitteroauth/twitteroauth.php');
 	require_once('SimplePie.mini.php');
 	
+	// your rss array list
 	$news_array = array(
 		1 => "http://www.data0.net/feeds/posts/default?alt=rss" // example from Data0.net
 	);
@@ -31,9 +32,14 @@
 		$max = $feed->get_item_quantity();
 		 
 		/* Get last tweeted data */
-		$last_saved_tweet = file_get_contents(getcwd().'/cache/last_tweet'.$a);
-		 
-		 $item = new SimplePie();
+		if (is_dir(getcwd()."/cache")) {
+			$last_saved_tweet = file_get_contents(getcwd().'/cache/last_tweet'.$a);
+		} else {
+			mkdir(getcwd()."/cache");
+			$last_saved_tweet = file_get_contents(getcwd().'/cache/last_tweet'.$a);
+		}
+		
+		$item = new SimplePie();
 		/* Get the first item on the feed */
 		$item = $feed->get_item(0);
 		 
@@ -64,7 +70,7 @@
 					fclose($stream);
 				}
 		
-				/* if any of this string match the title it will become append a hash tag */
+				/* if any of this string match the title it will become append a hash tag. Change the hash keyword accordingly. */
 				$hash_string = array(
 					1 => "Jenayah",		2 => "Cyber",			3 => "crime",
 					4 => "pencuri",			5 => "berjaya",			6 => "FBI",
