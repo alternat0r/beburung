@@ -3,8 +3,9 @@
 	
 	// check new updates on every $cycle_time time 
 	$cycle_time = "7"; // in minutes
+	$check_loop_limit = 5000;
 	
-	for ($x=1; $x<5000; $x++)
+	for ($x=1; $x<$check_loop_limit; $x++)
 	{
 		$today = date("Y-m-d H:i:s");
 		echo "--------------------------------------------------------------!\n";
