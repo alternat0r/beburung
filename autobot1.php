@@ -63,7 +63,7 @@
 			 
 			if ($itemlink != $last_saved_tweet) {
 
-				/* shorten the url with tinyurl */
+				/* shorten the url with ly.my */
 				if ($stream = fopen("http://ly.my/api.php?url=" . $itemlink, 'r')) {
 					$shortlink = stream_get_contents($stream);
 					//$shortlink = substr($shortlink,0,strrpos($shortlink,'<!--'));
